@@ -1,0 +1,34 @@
+{
+  "name": "floor12/yii2-pretty-settings",
+  "description": "Yii2 module to manage and access to application-level settings with pretty CRUD.",
+  "type": "yii2-module",
+  "minimum-stability": "stable",
+  "keywords": [
+    "yii2",
+    "settings",
+    "crud"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "floor12",
+      "email": "floor12@floor12.net",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "yiisoft/yii2": "^2.0."
+  },
+  "autoload": {
+    "psr-4": {
+      "floor12\\settings\\": "src"
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+}
