@@ -1,0 +1,46 @@
+div.f12-settings-page div.f12-settings-control {
+  display: none; }
+div.f12-settings-page form.f12-settings-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+  div.f12-settings-page form.f12-settings-content div.f12-settings-block {
+    width: 100%; }
+    div.f12-settings-page form.f12-settings-content div.f12-settings-block .f12-settings-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 0 10px; }
+      div.f12-settings-page form.f12-settings-content div.f12-settings-block .f12-settings-row label {
+        margin: 0; }
+      div.f12-settings-page form.f12-settings-content div.f12-settings-block .f12-settings-row input[type=text] {
+        border-radius: 2px;
+        border: 1px #ccc solid;
+        padding: 5px;
+        width: 100%;
+        max-width: 50%; }
+    div.f12-settings-page form.f12-settings-content div.f12-settings-block div.f12-sub-settings {
+      padding-top: 20px; }
+  div.f12-settings-page form.f12-settings-content > div.f12-settings-block {
+    padding: 20px;
+    border-radius: 4px;
+    background: #eee;
+    margin-bottom: 40px; }
+
+div.f12-settings-page.changed div.f12-settings-control {
+  display: block; }
+
+@media (min-width: 768px) {
+  div.f12-settings-page form.f12-settings-content >
+  div.f12-settings-block {
+    width: calc(50% - 20px); } }
+@media (min-width: 1280px) {
+  div.f12-settings-page form.f12-settings-content >
+  div.f12-settings-block {
+    width: calc(33.3% - 20px); } }
+@media (min-width: 1680px) {
+  div.f12-settings-page form.f12-settings-content >
+  div.f12-settings-block {
+    width: calc(25% - 20px); } }
+
+/*# sourceMappingURL=f12-pretty-settings.css.map */
