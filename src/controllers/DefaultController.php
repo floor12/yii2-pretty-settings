@@ -2,6 +2,7 @@
 
 namespace floor12\settings\controllers;
 
+use floor12\settings\assets\SettingsAsset;
 use floor12\settings\models\SettingItem;
 use floor12\settings\models\SettingsForm;
 use floor12\settings\Module;
@@ -17,7 +18,7 @@ class DefaultController extends Controller
 {
     public function actionTest()
     {
-//        var_dump(Yii::$app->getModule('f12settings')->getSetting('imapTicketSettings'));
+        //var_dump(Yii::$app->getModule('f12settings')->getSetting('imapTicketSettings'));
 //                var_dump(Yii::$app->getModule('f12settings')->getSetting('basic')->getSetting('mailSign')->getSetting());
 //                var_dump(Yii::$app->getModule('f12settings')->getSetting('basic')->getSetting('imapTicketEnable')->getSetting());
 //        var_dump(Yii::$app->getModule('f12settings')->getSettings());
@@ -39,6 +40,8 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
+        SettingsAsset::register($this->getView());
+        $this->layout = $this->module->layoutBackend;
         $settings = $this->module->getSettings();
         $this->getView()->title = $this->module->settingsPageTitle;
         $h1 = Html::tag('h1', $this->module->settingsPageTitle);

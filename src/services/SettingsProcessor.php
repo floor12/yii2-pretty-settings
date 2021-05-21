@@ -79,10 +79,10 @@ class SettingsProcessor
             array_pop($this->path);
             $this->path[] = $counter;
             $basicGroup = new SettingGroup();
-            $basicGroup->setName("Элкмент {$counter}");
+            $basicGroup->setName("Элeмент {$counter}");
             $basicGroup->setElements($this->processMap($configItem[array_key_last($configItem)]));
             $counter++;
-        } while ($basicGroup->hasValues() && $groups[] = $basicGroup);
+        } while (($counter === 1 || $basicGroup->hasValues()) && $groups[] = $basicGroup);
 
         return $groups;
     }
