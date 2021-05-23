@@ -3,11 +3,20 @@
 
 namespace floor12\settings\models;
 
+use floor12\settings\Module;
 use yii\base\Model;
+use Yii;
 
 class SettingsForm extends Model
 {
     public $values = [];
+    private $module;
+
+    public function init()
+    {
+        $this->module = Yii::$app->getModule(Module::MODULE_NAME);
+        parent::init();
+    }
 
     public function rules()
     {
@@ -20,9 +29,9 @@ class SettingsForm extends Model
     {
         foreach ($this->values as $path => $value) {
             if (($value === '')) {
-                SettingItem::clear($path);
+                $this->module->settingsProcessor->clear($path);
             } else {
-                SettingItem::updateData($path, $value);
+                $this->module->settingsProcessor->updateData($path, $value);
             }
         }
         return true;

@@ -3,26 +3,41 @@
 
 namespace floor12\settings\services;
 
-
+use Flintstone\Flintstone;
 use floor12\settings\models\SettingGroup;
 use floor12\settings\models\SettingGroupCollection;
 use floor12\settings\models\SettingItem;
-use floor12\settings\models\SettingValue;
 use floor12\settings\Module;
+
 
 class SettingsProcessor
 {
     private $settingsMap;
     /** @var SettingItem[] */
     private $settings = [];
-    private $settingHeap = [];
+    private $settigsFromDB = [];
     private $settingDefaults = [];
     private $path = [];
 
-    public function __construct(array $settingsMap)
+    public function __construct(array $settingsMap, string $settingsPath)
     {
+        $this->settingsDB = (new Flintstone('settings', ['dir' => $settingsPath]));
+        $this->settigsFromDB = $this->settingsDB->getAll();
         $this->settingsMap = $settingsMap;
         $this->settings = $this->processMap($this->settingsMap);
+    }
+
+    public function updateData($path, $value)
+    {
+        $this->settingsDB->delete($path);
+        $this->settingsDB->set($path, $value);
+        $this->settigsFromDB = $this->settingsDB->getAll();
+    }
+
+    public function clear($path)
+    {
+        $this->settingsDB->delete($path);
+        $this->settigsFromDB = $this->settingsDB->getAll();
     }
 
     /**
@@ -48,7 +63,7 @@ class SettingsProcessor
                 $item = new SettingItem();
                 $item->name = $configItem[0];
                 $item->path = implode('_', $this->path);
-                $item->value = SettingValue::findOne($item->path)->value;
+                $item->value = isset($this->settigsFromDB[$item->path]) ? $this->settigsFromDB[$item->path] : null;
                 $item->default = $configItem[2];
                 $item->type_id = $configItem[1];
                 $this->settingHeap[$key] = $item;

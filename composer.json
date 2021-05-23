@@ -18,7 +18,8 @@
   ],
   "require": {
     "php": ">=7.1.0",
-    "yiisoft/yii2": "^2.0."
+    "yiisoft/yii2": "^2.0.",
+    "fire015/flintstone": "^v2.3.0"
   },
   "autoload": {
     "psr-4": {

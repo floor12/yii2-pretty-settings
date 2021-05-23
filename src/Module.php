@@ -16,7 +16,7 @@ class Module extends \yii\base\Module
     /**
      * @var SettingsProcessor
      */
-    private $settingsProcessor;
+    public $settingsProcessor;
     /**
      * @inheritdoc
      */
@@ -46,12 +46,6 @@ class Module extends \yii\base\Module
      * @var string <h1> and page title for admin page
      */
     public $settingsPageTitle = 'Settings';
-
-    public function init()
-    {
-        $this->settingsProcessor = new SettingsProcessor($this->settingsMap);
-        parent::init();
-    }
 
     public function getSettings()
     {
