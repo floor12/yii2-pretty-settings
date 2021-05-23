@@ -24,7 +24,11 @@ class SettingsProcessor
         $this->settingsDB = (new Flintstone('settings', ['dir' => $settingsPath]));
         $this->settigsFromDB = $this->settingsDB->getAll();
         $this->settingsMap = $settingsMap;
-        $this->settings = $this->processMap($this->settingsMap);
+        try {
+            $this->settings = $this->processMap($this->settingsMap);
+        } catch (\Throwable $exception) {
+            new \ErrorException(sprintf('Settings reading error: $s', $exception->getMessage()));
+        }
     }
 
     public function updateData($path, $value)
@@ -64,7 +68,7 @@ class SettingsProcessor
                 $item->name = $configItem[0];
                 $item->path = implode('_', $this->path);
                 $item->value = isset($this->settigsFromDB[$item->path]) ? $this->settigsFromDB[$item->path] : null;
-                $item->default = $configItem[2];
+                $item->default = isset($configItem[2]) ? $configItem[2] : null;
                 $item->type_id = $configItem[1];
                 $this->settingHeap[$key] = $item;
                 $settings[array_pop($this->path)] = $item;
