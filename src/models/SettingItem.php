@@ -32,6 +32,14 @@ class SettingItem
 
     public function getValue()
     {
+        if ($this->value === null) {
+            if ($this->type_id = Module::TYPE_BOOL) {
+                return $this->default ?? false;
+            } else {
+                return $this->default ?? '';
+            }
+
+        }
         return $this->type_id === Module::TYPE_BOOL ? boolval($this->value) : strval($this);
     }
 
